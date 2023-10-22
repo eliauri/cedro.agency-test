@@ -3,6 +3,7 @@ import React, { useEffect, useId, useState } from 'react'
 import styles from './locationFilter.module.scss'
 
 const SelectList = ({ options, activeTab, setSelectedList, selectedList }) => {
+
     return (
         <div className={styles.locationList}>
             <div className={styles.locationList__wrapper}>
