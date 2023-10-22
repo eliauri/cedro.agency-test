@@ -1,0 +1,16 @@
+:root {
+  font-family: 'Roboto', Condensed;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  min-width: 320px;
+  min-height: 100vh;
+  padding-top: 10rem;
+}
