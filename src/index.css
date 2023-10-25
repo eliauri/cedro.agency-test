@@ -1,12 +1,29 @@
-:root {
-  font-family: 'Roboto', Condensed;
-}
+@import "normalize.css/normalize.css";
 
 * {
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "RobotoCondensed";
+  src: url("./assets/fonts/RobotoCondensed-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "RobotoCondensed";
+  src: url("./assets/fonts/RobotoCondensed-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Arial";
+  src: url("./assets/fonts/Arial.ttf") format("truetype");
+  font-weight: 400;
+}
+
 body {
+  font-family: 'RobotoCondensed';
   display: flex;
   justify-content: center;
   margin: 0 auto;

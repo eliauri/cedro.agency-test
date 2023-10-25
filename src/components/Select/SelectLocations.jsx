@@ -1,12 +1,31 @@
-import React, { useEffect, useId, useState } from 'react'
+import React, { useEffect, useId, useRef, useState } from 'react'
 
 import styles from './locationFilter.module.scss'
+import cn from 'classnames';
 
-const SelectList = ({ options, activeTab, setSelectedList, selectedList }) => {
+const isScrollBottom = (event) => {
+    if (event.target.scrollTop + event.target.clientHeight !== event.target.scrollHeight) {
+        return true
+    }
+    return false
+}
 
+const SelectLocations = ({ options, activeTab, setSelectedList, selectedList, selectIsOpened }) => {
+    const [isShadow, setShadow] = useState(true);
+    const ref = useRef(null);
+
+    useEffect(() => {
+        ref.current.clientHeight == ref.current.scrollHeight ?
+            setShadow(false) :
+            setShadow(true);
+    }, [activeTab, selectIsOpened])
+
+    const scrollHandler = (event) => {
+        setShadow(isScrollBottom(event))
+    }
     return (
-        <div className={styles.locationList}>
-            <div className={styles.locationList__wrapper}>
+        <div className={styles.locations}>
+            <div className={styles.locations__wrapper} onScroll={scrollHandler} ref={ref}>
                 {options[activeTab].locations.map((location) => {
                     return (
                         <SelectItem
@@ -20,7 +39,7 @@ const SelectList = ({ options, activeTab, setSelectedList, selectedList }) => {
                 }
                 )}
             </div>
-            <div className={styles.gradient}></div>
+            <div className={cn(styles.locations__shadow, isShadow && styles.active)}></div>
         </div>
     )
 }
@@ -50,7 +69,7 @@ const SelectItem = ({ data, parent, setSelectedList, selectedList }) => {
     }
 
     return (
-        <div className={styles.locationItem}>
+        <div className={styles.locations__item} >
             <input
                 id={checkboxId}
                 className={styles.checkbox}
@@ -64,4 +83,4 @@ const SelectItem = ({ data, parent, setSelectedList, selectedList }) => {
     )
 }
 
-export default SelectList;
+export default SelectLocations;
