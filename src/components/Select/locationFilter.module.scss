@@ -7,6 +7,7 @@
     --border-primary: rgba(7, 0, 15, 0.1);
     --border-strong: #07000F;
     --bg-accent: #0067FE;
+    --bg-accent-hover: #085EDB;
 }
 
 .select {
@@ -101,10 +102,26 @@
         font-weight: 500;
         text-transform: uppercase;
         transition: all 0.3s;
+        position: relative;
 
         &.active {
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0px;
+                width: 100%;
+                height: 1px;
+                transition: all 0.3s;
+                background-color: var(--border-strong);
+            }
+
             color: var(--text-primary);
-            border-bottom: 1px solid var(--border-strong);
+
+            &:hover {
+                &::after {
+                    transform: scaleY(2);
+                }
+            }
         }
 
         &:hover {
@@ -130,6 +147,8 @@
 
     &.active {
         display: flex;
+
+
     }
 
     &__item {
@@ -170,7 +189,7 @@
         overflow-y: scroll;
         overflow-x: hidden;
         margin-top: .5rem;
-        padding: 0 0.75rem .5rem 1rem;
+        padding-bottom: .5rem;
         margin-right: 0.25rem;
 
 
@@ -191,41 +210,61 @@
         font-family: Arial;
         font-weight: 400;
         color: var(--text-primary);
+        padding: 0 1rem;
+        transition: background-color 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:hover {
+            background-color: var(--bg-neutral);
+        }
 
         .checkbox {
             position: absolute;
             z-index: -1;
             opacity: 0;
             margin-bottom: 0rem;
+
+
         }
 
         .checkbox+label {
-            display: flex;
-            align-items: center;
-            user-select: none;
+            width: 2rem;
+            height: 2rem;
             position: relative;
-            height: 100%;
 
+            &:hover::before {
+                background-color: var(--bg-neutral);
+            }
         }
 
         .checkbox+label::before {
             content: '';
             display: inline-block;
             cursor: pointer;
-            width: 2rem;
-            height: 2rem;
+            width: 100%;
+            height: 100%;
             border-radius: 6.25rem;
             border: 1px solid var(--border-primary);
             transition: background-color 0.2s;
             position: absolute;
             right: 0;
+
+
         }
 
-        .checkbox:checked+label::before {
-            background-color: #0067FE;
-            background-image: url(../../assets/svg/Tick.svg);
-            background-repeat: no-repeat;
-            background-position: 50% 50%;
+        .checkbox:checked+label {
+            &::before {
+                background-color: #0067FE;
+                background-image: url(../../assets/svg/Tick.svg);
+                background-repeat: no-repeat;
+                background-position: 50% 50%;
+            }
+
+            &:hover::before {
+                background-color: var(--bg-accent-hover) !important;
+            }
         }
     }
 

@@ -70,6 +70,7 @@ const SelectItem = ({ data, parent, setSelectedList, selectedList }) => {
 
     return (
         <div className={styles.locations__item} >
+            {data.label}
             <input
                 id={checkboxId}
                 className={styles.checkbox}
@@ -78,7 +79,7 @@ const SelectItem = ({ data, parent, setSelectedList, selectedList }) => {
                 checked={checked}
                 onChange={handleChange}
             />
-            <label htmlFor={checkboxId}> {data.label}</label>
+            <label htmlFor={checkboxId}> </label>
         </div>
     )
 }
